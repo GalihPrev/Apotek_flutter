@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:loginpage/ListProduct/Categories_list.dart';
 // import 'package:loginpage/Carousel_Slider.dart';
 import 'package:loginpage/LoginPage/LoginScreen.dart';
 
@@ -95,46 +96,62 @@ class _ListProductState extends State<ListProduct> {
                         Row(
                           children: [
                             Icon(Icons.local_hospital),
-                            Text(
-                              "List Product",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w500),
-                            ),
-                            SizedBox(
-                              width: 130,
+                            Expanded(
+                              child: Text(
+                                "List Product",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w500),
+                              ),
                             ),
                             TextButton(
+                              onPressed: () {},
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                   Text(
-                                    'See More',
-                                    style: TextStyle(
-                                        fontSize: 13, color: Colors.black),
+                                    "More ",
+                                    style: TextStyle(color: Colors.black),
                                   ),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.black,
+                                    size: 12,
+                                  )
                                 ],
                               ),
-                              onPressed: () {},
-                            ),
+                            )
                           ],
                         ),
                         SizedBox(
                           height: 20,
                         ),
-
-                        CarouselSlider(
-                          items: imageSliders,
-                          carouselController: _controller,
-                          options: CarouselOptions(
-                              autoPlay: true,
-                              enlargeCenterPage: true,
-                              aspectRatio: 2,
-                              viewportFraction: 1,
-                              onPageChanged: (index, reason) {
-                                setState(() {
-                                  _current = index;
-                                });
-                              }),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          elevation: 10,
+                          child: CarouselSlider(
+                            items: imageSliders,
+                            carouselController: _controller,
+                            options: CarouselOptions(
+                                autoPlayInterval: Duration(seconds: 2),
+                                autoPlay: true,
+                                enlargeCenterPage: true,
+                                aspectRatio: 2,
+                                viewportFraction: 1,
+                                onPageChanged: (index, reason) {
+                                  setState(() {
+                                    _current = index;
+                                  });
+                                  // onPressed:
+                                  // () {
+                                  //   Navigator.pushReplacement(context,
+                                  //       MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return LoginScreen();
+                                  //     },
+                                  //   ));
+                                  // };
+                                }),
+                          ),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -159,28 +176,39 @@ class _ListProductState extends State<ListProduct> {
                             );
                           }).toList(),
                         ),
-
-                        // Container(
-                        //   margin: EdgeInsets.only(bottom: 5, top: 20),
-                        //   height: 140,
-                        //   width: 300,
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(10),
-                        //     // color: Colors.blue,
-                        //     border: Border.all(
-                        //       color: Colors.black,
-                        //       width: 2,
-                        //     ),
-                        //   ),
-                        //   // color: Colors.green,
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [Text('PROMO PRODUCT')],
-                        //   ),
-                        // ),
+                        Container(
+                          // color: Colors.amber,
+                          height: 40,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(child: Text("Categories")),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Row(
+                                      children: const [
+                                        Text(
+                                          "More ",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.black,
+                                          size: 12,
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
+                  _CategoriesList(),
                 ],
               ),
             ),
@@ -189,7 +217,29 @@ class _ListProductState extends State<ListProduct> {
       ),
     );
   }
+
+  Row _CategoriesList() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: const [
+        CategoriesList(
+          title: "nama 1 ",
+        ),
+        CategoriesList(
+          title: "nama 2 ",
+        ),
+        CategoriesList(
+          title: "nama 3 ",
+        ),
+        CategoriesList(
+          title: "nama 4 ",
+        ),
+      ],
+    );
+  }
 }
+
+
 
 //  IconButton(
 //               icon: Icon(Icons.search),

@@ -208,6 +208,7 @@ class _ListProductState extends State<ListProduct> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 140, child: _CategoriesList()),
                   _CategoriesList(),
                 ],
               ),
@@ -218,9 +219,9 @@ class _ListProductState extends State<ListProduct> {
     );
   }
 
-  Row _CategoriesList() {
+  Widget _CategoriesList() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: const [
         CategoriesList(
           title: "nama 1 ",

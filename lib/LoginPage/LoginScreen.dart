@@ -32,9 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
+                            children:  [
+                              Padding (
+                                padding:  EdgeInsets.only(left: 20),
                                 child: Icon(
                                   Icons.account_circle_sharp,
                                   size: 60,
@@ -42,13 +42,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               Container(
                                 // color: Colors.amber,
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                   top: 30,
                                   left: 10,
                                   right: 20,
                                   bottom: 40,
                                 ),
-                                child: Text(
+                                child:const Text (
                                   "Sign in",
                                   style: TextStyle(
                                       fontSize: 30,

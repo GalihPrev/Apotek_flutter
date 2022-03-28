@@ -24,7 +24,7 @@ class CategoriesList extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.3),
                         spreadRadius: 5,
                         blurRadius: 5,
-                        offset: Offset(10, 5))
+                        offset: Offset(5, 5))
                   ],
                   color: Colors.amber,
                   borderRadius: BorderRadius.only(

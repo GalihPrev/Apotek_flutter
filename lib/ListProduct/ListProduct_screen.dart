@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loginpage/ListProduct/Categories_list.dart';
+import 'package:loginpage/ListProduct/Categoriestest.dart';
 // import 'package:loginpage/Carousel_Slider.dart';
 import 'package:loginpage/LoginPage/LoginScreen.dart';
 
@@ -37,6 +38,8 @@ class ListProduct extends StatefulWidget {
 class _ListProductState extends State<ListProduct> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -180,30 +183,37 @@ class _ListProductState extends State<ListProduct> {
                             }).toList(),
                           ),
                           Container(
+                            margin: EdgeInsets.only(top: 10),
                             // color: Colors.amber,
-                            height: 40,
+                            height: 70,
                             child: Column(
                               children: [
                                 Row(
                                   children: [
                                     Expanded(child: Text("Categories")),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Row(
-                                        children: const [
-                                          Text(
-                                            "More ",
+                                    Row(
+                                      children: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CategoriesList2()));
+                                          },
+                                          child: Text(
+                                            "More",
                                             style:
                                                 TextStyle(color: Colors.black),
                                           ),
-                                          Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: Colors.black,
-                                            size: 12,
-                                          )
-                                        ],
-                                      ),
-                                    )
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.black,
+                                          size: 12,
+                                        )
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ],
@@ -229,10 +239,10 @@ class _ListProductState extends State<ListProduct> {
                     ),
                     InkWell(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => LoginScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()));
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(

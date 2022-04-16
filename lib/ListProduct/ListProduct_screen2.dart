@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:loginpage/ListProduct/Categories_list.dart';
 import 'package:loginpage/LoginPage/LoginScreen.dart';
 
 class listProduct2 extends StatefulWidget {
@@ -44,11 +46,11 @@ class _listProduct2State extends State<listProduct2> {
           SliverAppBar(
             backgroundColor: Colors.white,
             title: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 80),
+              padding: EdgeInsets.symmetric(horizontal: 50),
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Text(
-                  "List Product",
+                  "Apotek K24 SINGOSARI",
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
@@ -71,7 +73,7 @@ class _listProduct2State extends State<listProduct2> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(top: 70, left: 80, right: 80),
+                      padding: EdgeInsets.only(top: 70, left: 40, right: 80),
                       child: Container(
                         child: Column(
                           children: [
@@ -123,46 +125,102 @@ class _listProduct2State extends State<listProduct2> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Apotek K24 SINGOSARI",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
-                      ),
                       const SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.local_hospital),
-                              const Text(
-                                "List Product",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: Row(
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
                                   children: const [
+                                    Icon(Icons.local_hospital),
                                     Text(
-                                      "More ",
-                                      style: TextStyle(color: Colors.black),
+                                      "List Product",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
                                     ),
-                                    SizedBox(
-                                      height: 8,
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.black,
-                                        size: 12,
-                                      ),
-                                    )
                                   ],
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Row(
+                                    children: const [
+                                      Text(
+                                        "More ",
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.black,
+                                          size: 12,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        elevation: 10,
+                        child: CarouselSlider(
+                          items: imageSliders,
+                          carouselController: _controller,
+                          options: CarouselOptions(
+                              autoPlayInterval: Duration(seconds: 2),
+                              autoPlay: true,
+                              enlargeCenterPage: true,
+                              aspectRatio: 2,
+                              viewportFraction: 1,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current = index;
+                                });
+                                // onPressed:
+                                // () {
+                                //   Navigator.pushReplacement(context,
+                                //       MaterialPageRoute(
+                                //     builder: (context) {
+                                //       return LoginScreen();
+                                //     },
+                                //   ));
+                                // };
+                              }),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: imgList.asMap().entries.map((entry) {
+                          return GestureDetector(
+                            onTap: () => _controller.animateToPage(entry.key),
+                            child: Container(
+                              width: 5,
+                              height: 12,
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 4.0),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: (Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : Colors.black)
+                                    .withOpacity(
+                                        _current == entry.key ? 0.8 : 0.4),
+                              ),
+                            ),
+                          );
+                        }).toList(),
                       ),
                     ],
                   ),
@@ -230,6 +288,23 @@ class _listProduct2State extends State<listProduct2> {
           // ),
         ],
       ),
+    );
+  }
+
+  Widget _CategoriesList() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: const [
+        CategoriesList(
+          title: "nama 1 ",
+        ),
+        CategoriesList(
+          title: "nama 2 ",
+        ),
+        CategoriesList(
+          title: "nama 3 ",
+        ),
+      ],
     );
   }
 }
